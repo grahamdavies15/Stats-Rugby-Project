@@ -3,13 +3,13 @@
 #### 128 units Models ####
 
 # the input to the network
-input <- layer_input(shape = c(max_length,num_characters)) 
+input <- layer_input(shape = c(max_length, num_actions)) 
 
 #the output to the network
 output <- 
   input %>%
   layer_lstm(units = 128) %>% #128 units
-  layer_dense(num_characters) %>%
+  layer_dense(num_actions) %>%
   layer_activation("softmax")
 
 ## 256 batch size ##
@@ -138,13 +138,13 @@ fit_mod.1.32b.128u <- mod.1.32b.128u %>% keras::fit(
 #### 32 Unit models ####
 
 # the input to the network
-input <- layer_input(shape = c(max_length,num_characters)) 
+input <- layer_input(shape = c(max_length, num_actions)) 
 
 #the output to the network
 output <- 
   input %>%
   layer_lstm(units = 32) %>% #32 units
-  layer_dense(num_characters) %>%
+  layer_dense(num_actions) %>%
   layer_activation("softmax")
 
 ## 256 batch size ##
