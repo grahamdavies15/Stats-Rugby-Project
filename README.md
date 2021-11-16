@@ -11,3 +11,7 @@ The R scripts provided are as follows:
   LSTM2_train.R     - Trains 6 different 2-layer stacked LSTM models.
   
   winnersVSlosers.R - Game simulation script. Requires saved generated models from winning and losing teams.
+  
+  Rugby_output.R - Takes a trained model and generates 10000 sequences based on that model.
+  
+  modelEDA - Some explanatory data analysis done on the 10000 generated sequences from a specific model
