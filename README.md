@@ -4,7 +4,9 @@ This code used the 'keras' package to generate sequences of actions in rugby. Al
 
 The R scripts provided are as follows:
   Rugby_dataClean.R - Cleans and prepares the data for training.
+  
   LSTM1_train.R     - Trains 6 different single-layer LSTM models.
+  
   LSTM2_train.R     - Trains 6 different 2-layer stacked LSTM models.
   
   
