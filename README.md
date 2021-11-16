@@ -15,3 +15,7 @@ The R scripts provided are as follows:
   Rugby_output.R - Takes a trained model and generates 10000 sequences based on that model.
   
   modelEDA - Some explanatory data analysis done on the 10000 generated sequences from a specific model
+  
+  
+  
+The "gen_mod.2.128b.32u.Rdata" file contains 10000 generated seqeunces from a 2-layer stacked LSTM model using 128 batch size, 32 units and a temperature value of 1. 
