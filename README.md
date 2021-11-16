@@ -16,6 +16,8 @@ The R scripts provided are as follows:
   
   modelEDA - Some explanatory data analysis done on the 10000 generated sequences from a specific model
   
+  eda.R - Explanatory data analysis done on the sequences of actions from the original data set.
+  
   
   
 The "gen_mod.2.128b.32u.Rdata" file contains 10000 generated seqeunces from a 2-layer stacked LSTM model using 128 batch size, 32 units and a temperature value of 1. 
