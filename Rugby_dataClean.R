@@ -21,15 +21,15 @@ actions <- (all_acts)
 length(actions) #485502
 
 #unique actions
-chars <- actions %>%  #24
+unique_acts <- actions %>%  #24
   unique() %>%
   sort()
 
 #create action indices
-action_lookup <- data.frame(character = c(chars), stringsAsFactors = FALSE)
-action_lookup[["character_id"]] <- 1:nrow(action_lookup)
+action_lookup <- data.frame(action = c(unique_acts), stringsAsFactors = FALSE)
+action_lookup[["action_id"]] <- 1:nrow(action_lookup)
 
-num_characters <- nrow(action_lookup) + 1  #24 + 1
+num_actions <- nrow(action_lookup) + 1  #24 + 1
 
 
 #split into sequences ending in play 15
@@ -76,13 +76,13 @@ seq<-tibble(seq) %>%
 #create cumulitive sequences and shuffle
 action_data <-
   seq %>% 
-  mutate(accumulated_plate = seq %>%
+  mutate(accumulated_seq = seq %>%
            str_split(" ") %>%              # split into actions
            map( ~ purrr::accumulate(.x,c)) # make into cumulative sequences
   ) %>%
-  select(accumulated_plate) %>%            # get only the column with the names
-  unnest(accumulated_plate) %>%            # break into individual rows
-  pull(accumulated_plate)                  # change to a list
+  select(accumulated_seq) %>%            # get only the column with the names
+  unnest(accumulated_seq) %>%            # break into individual rows
+  pull(accumulated_seq)                  # change to a list
 
 #389591 action_data
 
@@ -98,11 +98,12 @@ action_data
 #1 hot encode - pad and get into matrix form
 act_matrix <-
   action_data %>%
-  map(~ character_lookup$character_id[match(.x,action_lookup$character)]) %>% # change characters into the right numbers
-  pad_sequences(maxlen = max_length+1) %>%                                    # add padding so all of the sequences have the same length
-  to_categorical(num_classes = num_characters)
+  map(~ action_lookup$action_id[match(.x,action_lookup$action)]) %>% # change characters into the right numbers
+  pad_sequences(maxlen = max_length+1) %>%                           # add padding so all of the sequences have the same length
+  to_categorical(num_classes = num_actions)
 
 
 # Make X and y
 X <- act_matrix[,1:max_length,] # make the X data of the actions before
 y <- act_matrix[,max_length+1,] # make the Y data of the next action
+
