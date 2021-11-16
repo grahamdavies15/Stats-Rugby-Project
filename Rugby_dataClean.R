@@ -13,7 +13,6 @@ library(ggplot2)
 
 
 #load data set
-#load("Dropbox/Data/all_actions.Rda")
 load("all_actions.Rda")
 
 
